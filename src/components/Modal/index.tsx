@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import ReactModal from "react-modal";
 
 interface IModal {
   isOpen: boolean;
-  children: any;
+  children: ReactNode;
   setIsOpen(): void;
 }
 

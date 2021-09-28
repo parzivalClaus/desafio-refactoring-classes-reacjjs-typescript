@@ -3,10 +3,11 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import { useField } from "@unform/core";
 
 import { Container } from "./styles";
+import { IconType } from "react-icons";
 
 interface IInput {
-  name: any;
-  icon?: any;
+  name: string;
+  icon?: IconType;
 }
 
 const Input = ({
@@ -14,10 +15,10 @@ const Input = ({
   icon: Icon,
   ...rest
 }: IInput & React.InputHTMLAttributes<HTMLInputElement>) => {
-  const inputRef = useRef<any>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const [isFocused, setIsFocused] = useState(false);
-  const [isFilled, setIsFilled] = useState<any>(false);
+  const [isFilled, setIsFilled] = useState(false);
 
   const { fieldName, defaultValue, registerField } = useField(name);
 

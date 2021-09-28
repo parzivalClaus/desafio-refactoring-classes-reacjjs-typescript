@@ -4,7 +4,7 @@ import { Container } from "./styles";
 import Logo from "../../assets/logo.svg";
 
 interface IHeader {
-  openModal(any: any): void;
+  openModal(): void;
 }
 
 const Header = ({ openModal }: IHeader): JSX.Element => {

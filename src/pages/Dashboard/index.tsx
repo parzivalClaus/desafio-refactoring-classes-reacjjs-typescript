@@ -7,11 +7,20 @@ import ModalAddFood from "../../components/ModalAddFood";
 import ModalEditFood from "../../components/ModalEditFood";
 import { FoodsContainer } from "./styles";
 
+export interface IFoodItem {
+  id: number;
+  image: string;
+  name: string;
+  description: string;
+  price: number;
+  available: boolean;
+}
+
 interface IDashboard {}
 
 const Dashboard = (Props: IDashboard): JSX.Element => {
-  const [foods, setFoods] = useState<any[]>([]);
-  const [editingFood, setEditingFood] = useState<any>({});
+  const [foods, setFoods] = useState<IFoodItem[]>([]);
+  const [editingFood, setEditingFood] = useState<IFoodItem>({} as IFoodItem);
   const [modalOpen, setModalOpen] = useState(false);
   const [editModalOpen, setEditModalOpen] = useState(false);
 
@@ -24,7 +33,7 @@ const Dashboard = (Props: IDashboard): JSX.Element => {
     getFoods();
   }, []);
 
-  const handleAddFood = async (food: any) => {
+  const handleAddFood = async (food: IFoodItem) => {
     try {
       const response = await api.post("/foods", {
         ...food,
@@ -37,7 +46,7 @@ const Dashboard = (Props: IDashboard): JSX.Element => {
     }
   };
 
-  const handleUpdateFood = async (food: any) => {
+  const handleUpdateFood = async (food: IFoodItem) => {
     try {
       const foodUpdated = await api.put(`/foods/${editingFood.id}`, {
         ...editingFood,
@@ -70,7 +79,7 @@ const Dashboard = (Props: IDashboard): JSX.Element => {
     setEditModalOpen(!editModalOpen);
   };
 
-  const handleEditFood = (food: any) => {
+  const handleEditFood = (food: IFoodItem) => {
     setEditingFood(food);
     setEditModalOpen(true);
   };
